@@ -10,6 +10,10 @@ const Main = () => {
     axios.get(requests.requestPopular).then((response) => {
       setMovies(response.data.results);
     });
+
+    axios.get(requests.requestHorror).then((response) => {
+      console.log(response.data.results);
+    })
   }, []);
 
   const truncateString = (str, num) => {
@@ -22,16 +26,16 @@ const Main = () => {
   };
 
   return (
-    <div className="w-full h-[500px] md:h-[80vh] xl:h-[100vh] text-white">
-      <div className="w-full h-full">
-        <div className="absolute w-full h-full bg-gradient-to-t from-black to-[rgba(0,0,0,0.2)]"></div>
+    <div className="w-full h-[550px] md:h-[80vh] text-white">
+      <div className="w-full h-[550px]">
+        <div className="absolute w-[100%] h-[550px] bg-gradient-to-t from-black to-[rgba(0,0,0,0.2)]"></div>
         <img
           className="w-full h-full object-cover"
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt={movie?.title}
         />
 
-        <div className="absolute w-full top-[30%] p-4 md:p-8">
+        <div className="absolute w-full top-[30%] md:top-[20%] p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl mb-5 font-bold">
             {movie?.title}
           </h1>
