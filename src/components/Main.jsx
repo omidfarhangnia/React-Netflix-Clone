@@ -6,16 +6,10 @@ const Main = () => {
   const [movies, setMovies] = useState([]);
   const movie = movies[Math.floor(Math.random() * movies.length)];
 
-  console.log(movies)
-
   useEffect(() => {
     axios.get(requests.requestPopular).then((response) => {
       setMovies(response.data.results);
     });
-
-    axios.get(requests.requestHorror).then((response) => {
-      console.log(response.data.results);
-    })
   }, []);
 
   const truncateString = (str, num) => {

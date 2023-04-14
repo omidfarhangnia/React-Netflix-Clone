@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between py-5 px-7 md:py-7 md:px-10 z-[100] absolute w-full">
-      <a href="https://www.netflix.com/nl-en/" className="w-2/12 min-w-[120px]">
+      <Link to="/" className="w-2/12 min-w-[120px]">
         <span>
           <svg
             viewBox="0 0 111 30"
@@ -21,12 +22,16 @@ const Navbar = () => {
             </g>
           </svg>
         </span>
-      </a>
+      </Link>
       <div>
-        <button className="text-white px-4 py-2 mr-4">Sign In</button>
-        <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
-          Sign Up
-        </button>
+        <Link to="/login">
+          <button className="text-white px-4 py-2 mr-4">Sign In</button>
+        </Link>
+        <Link to="signup">
+          <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
+            Sign Up
+          </button>
+        </Link>
       </div>
     </div>
   );
