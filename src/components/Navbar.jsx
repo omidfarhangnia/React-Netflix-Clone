@@ -1,7 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    try {
+      logOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex items-center justify-between py-5 px-7 md:py-7 md:px-10 z-[100] absolute w-full">
       <Link to="/" className="w-2/12 min-w-[120px]">
@@ -23,16 +36,34 @@ const Navbar = () => {
           </svg>
         </span>
       </Link>
-      <div>
-        <Link to="/login">
-          <button className="text-white px-4 py-2 mr-4">Sign In</button>
-        </Link>
-        <Link to="signup">
-          <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
-            Sign Up
+      {user?.email ? (
+        <div>
+          <Link to="/account">
+            <button className="text-white py-2 px-3 mr-2 md:px-4 md:mr-4 lg:mr-8">
+              Account
+            </button>
+          </Link>
+          <button
+            onClick={handleLogOut}
+            className="bg-red-600 py-2 px-3 md:px-6 rounded cursor-pointer text-white"
+          >
+            Log Out
           </button>
-        </Link>
-      </div>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login">
+            <button className="text-white py-2 px-3 mr-2 md:px-4 md:mr-4 lg:mr-8">
+              Sign In
+            </button>
+          </Link>
+          <Link to="/signup">
+            <button className="bg-red-600 py-2 px-3 md:px-6 rounded cursor-pointer text-white">
+              Sign Up
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
