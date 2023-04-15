@@ -20,7 +20,7 @@ export function AuthContextProvider({ children }) {
       unsubscribe();
     };
   });
-  
+
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
@@ -40,6 +40,6 @@ export function AuthContextProvider({ children }) {
   );
 }
 
-// export function userAuth() {
-//     return useContext(AuthContext);
-// }
+export function UserAuth() {
+    return useContext(AuthContext);
+}
