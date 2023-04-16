@@ -8,10 +8,10 @@ const SignUp = () => {
   const {user, signUp} = UserAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      signUp(email, password);
+      await signUp(email, password);
       navigate("/");
     } catch (error) {
       console.log(error)
